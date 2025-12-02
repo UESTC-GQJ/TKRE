@@ -50,10 +50,45 @@ TKRE/
     └── synthetic_data/         # Generated data from LLMs
         ├── llm_corpus.json
         └── llm_da_8.json
+```
 
 ## 🚀 Requirements
 To install the required dependencies:
+```
 pip install -r requirements.txt
+```
+Core Dependencies:
+* Python >= 3.8
+* PyTorch >= 1.13.0
+* Transformers >= 4.30.0
+* Scikit-learn
+
+## 🛠️ Usage
+1. Data Generation (Optional)
+If you wish to reproduce the data generation process using LLMs (e.g., Llama-2, GPT-3.5), navigate to the augmentation directory:
+```
+cd codes/data_augmentation
+
+# 1. Generate Explanation-Driven Knowledge (EDKG)
+bash data_corpus.sh
+
+# 2. Generate Schema-Constrained Synthetic Data (SCDG)
+bash data_augment.sh
+```
+2. Knowledge-Guided Pre-training
+Perform the two-stage pre-training (MSLM + SCL) on the synthetic and explanation-driven corpus.
+```
+python mslm_model.py
+
+python cl_model.py
+```
+3. Task-Oriented Fine-tuningFine-tune the pre-trained model on the $K$-shot support sets ($K=8, 16, 32$).
+```
+cd codes/traditional_re
+
+# Run the fine-tuning script
+bash fewshot_scripts/run_roberta.sh
+```
 
 If you use the code in your project, please cite the following paper:
 IJCAI'25 ([PDF](https://www.ijcai.org/proceedings/2025/897))
