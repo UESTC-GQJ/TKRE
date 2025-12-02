@@ -24,6 +24,7 @@ This repository contains the source code and datasets for the paper **"Bridging 
     1.  **MSLM**: Masked Span Language Modeling.
     2.  **SCL**: Span-Level Contrastive Learning.
 
+![image](overall.png)
 ## 📂 Repository Structure
 
 ```text
